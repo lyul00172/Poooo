@@ -35,6 +35,8 @@ export const BAD_WORDS = [
   'son of a bitch',
   'wtf',
   '좆',
+  'ㅈ까',
+  'ㅈㄴ',
 ];
 
 /**
