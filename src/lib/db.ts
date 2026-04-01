@@ -1,8 +1,18 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 
-// Use a file at the project root for local development
-const dbPath = path.resolve(process.cwd(), 'comments.sqlite');
+// Use a persistent volume path in production (e.g., for Railway) 
+// and a local file in development.
+const isProd = process.env.NODE_ENV === 'production';
+const dbDir = isProd ? '/app/data' : process.cwd();
+const dbPath = path.resolve(dbDir, 'comments.sqlite');
+
+// Ensure the data directory exists
+if (isProd && !fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
 const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 
