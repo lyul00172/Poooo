@@ -197,7 +197,7 @@ export default function Home() {
       <section className="opacity-0 animate-spring-up animation-delay-200">
         <div className="flex items-center space-x-2 mb-6 px-1">
           <MessageSquare className="w-5 h-5 text-slate-600 dark:text-slate-400" />
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">익명톡</h2>
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">댓글</h2>
           <span className="flex-1"></span>
           <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-full">
             {comments.length}
