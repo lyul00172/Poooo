@@ -8,7 +8,7 @@ export default function Home() {
   const [calories, setCalories] = useState<string>('');
   const [loadingMeals, setLoadingMeals] = useState(true);
   const [mealError, setMealError] = useState<string | null>(null);
-  
+
   const [comments, setComments] = useState<any[]>([]);
   const [loadingComments, setLoadingComments] = useState(true);
 
@@ -22,7 +22,7 @@ export default function Home() {
     const kstDate = new Date(today.getTime() + 9 * 60 * 60 * 1000);
     return kstDate.toISOString().slice(0, 10).replace(/-/g, '');
   };
-  
+
   const [currentDate] = useState(getTodayKst());
 
   const formatDisplayDate = (dateStr: string) => {
@@ -44,7 +44,7 @@ export default function Home() {
             setMenu(data.menu);
             setCalories(data.calories || '');
           } else {
-            setMealError('오늘은 급식 정보가 없어요 🥲');
+            setMealError('오늘은 급식 정보가 없어요.');
           }
         } else {
           setMealError(data.error || '급식 정보를 불러오지 못했어요.');
@@ -135,7 +135,7 @@ export default function Home() {
     const date = new Date(dateStr + 'Z'); // Convert sqlite UTC string to Local
     const now = new Date();
     const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-    
+
     if (diffInSeconds < 60) return '방금 전';
     if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}분 전`;
     if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}시간 전`;
@@ -146,7 +146,7 @@ export default function Home() {
     <main className="min-h-screen pb-24 px-4 pt-8 max-w-md mx-auto relative isolate sm:pt-12 transition-colors duration-500">
       {/* Background Gradients */}
       <div className="absolute inset-x-0 top-0 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
-        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#38bdf8] to-[#2dd4bf] opacity-30 dark:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}></div>
+        <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#38bdf8] to-[#2dd4bf] opacity-30 dark:opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)' }}></div>
       </div>
 
       <header className="mb-8 text-center opacity-0 animate-spring-up">
@@ -210,7 +210,7 @@ export default function Home() {
             <div className="flex space-x-2">
               <input
                 type="text"
-                placeholder="닉네임 (선택 안하면 익명)"
+                placeholder="닉네임"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 className="flex-1 bg-transparent border-b border-slate-200 dark:border-slate-700/50 px-2 py-2 text-sm focus:outline-none focus:border-brand-500 dark:text-slate-200 transition-colors"
@@ -260,12 +260,12 @@ export default function Home() {
             </div>
           ) : comments.length === 0 ? (
             <div className="text-center py-10 text-slate-500 dark:text-slate-500">
-              <p>첫 번째 댓글을 남겨보세요! ✨</p>
+              <p>첫 번째 댓글을 남겨보세요.</p>
             </div>
           ) : (
             comments.map((comment) => (
-              <div 
-                key={comment.id} 
+              <div
+                key={comment.id}
                 className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-800/50 hover:bg-white/80 dark:hover:bg-slate-800/60 transition-colors"
               >
                 <div className="flex items-center justify-between mb-2">
@@ -277,7 +277,7 @@ export default function Home() {
                       <Clock className="w-3 h-3 mr-1" />
                       {timeAgo(comment.created_at)}
                     </span>
-                    <button 
+                    <button
                       onClick={() => handleDelete(comment.id)}
                       className="p-1 text-slate-400 hover:text-red-500 transition-colors"
                       title="삭제"
